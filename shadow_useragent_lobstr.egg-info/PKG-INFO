@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
-Name: shadow-useragent-simonlobstr
-Version: 0.0.1
+Name: shadow-useragent-lobstr
+Version: 0.0.2
 Summary: Always get best user-agent
 Home-page: https://github.com/Lobstrio/shadow-useragent
 Author: Simon Rochwerg
