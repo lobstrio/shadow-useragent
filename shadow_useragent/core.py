@@ -5,9 +5,10 @@ from datetime import datetime, timedelta
 import logging, coloredlogs
 import json
 import random
+import traceback
 
 
-class UserAgentCollector():
+class ShadowUserAgent():
 
     URL = "http://51.158.74.109/useragents/?format=json"
     useragents = './data/useragents.pk'
@@ -25,7 +26,17 @@ class UserAgentCollector():
 
     def _update(self):
         d_infos = {}
-        r = requests.get(url=self.URL)
+
+        update_tries = 0
+        while 1:
+            try:
+                update_tries += 1
+                r = requests.get(url=self.URL)
+            except Exception as e:
+                self.logger.warning(traceback.format_exc())
+            finally:
+                if update_tries > 5:
+                    raise Exception(traceback.format_exc())
         data = json.loads(r.content)
         with open(self.useragents, 'wb') as f:
             pickle.dump(data, f)
@@ -55,18 +66,22 @@ class UserAgentCollector():
             self.logger.info(ua)
 
     def get_uas(self):
+        self.update()
         return pickle.load(open(self.useragents, 'rb'))
 
     def get_sorted_uas(self):
+        self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
         return sorted(uas, key = lambda i: i['percent'],reverse=True)
 
 
     def pickrandom(self):
+        self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
         return random.choice(uas)["useragent"]
 
     def random_details(self):
+        self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
         return random.choice(uas)
 
