@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: shadow-useragent-simonlobstr
+Version: 0.0.1
+Summary: Always get best user-agent
+Home-page: https://github.com/Lobstrio/shadow-useragent
+Author: Simon Rochwerg
+Author-email: simon.rochwerg@lobstr.io
+License: UNKNOWN
+Description: Always keep your user-agent updated with the most recent and most common user-agents
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

@@ -1,0 +1,8 @@
+README.md
+setup.py
+shadow_useragent/__init__.py
+shadow_useragent/core.py
+shadow_useragent_simonlobstr.egg-info/PKG-INFO
+shadow_useragent_simonlobstr.egg-info/SOURCES.txt
+shadow_useragent_simonlobstr.egg-info/dependency_links.txt
+shadow_useragent_simonlobstr.egg-info/top_level.txt
