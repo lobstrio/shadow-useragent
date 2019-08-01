@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="shadow-useragent-lobstr",
-    version="0.0.1",
+    version="0.0.2",
     author="Simon Rochwerg",
     author_email="simon.rochwerg@lobstr.io",
     description="Always get best user-agent",
@@ -18,6 +18,7 @@ setuptools.setup(
         'pytz',
         'coloredlogs'
     ],
+    include_package_data=True,
 
     classifiers=[
         "Programming Language :: Python :: 3",
