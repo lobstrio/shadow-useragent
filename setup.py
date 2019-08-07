@@ -9,7 +9,7 @@ setuptools.setup(
     author="Simon Rochwerg",
     author_email="simon.rochwerg@lobstr.io",
     description="Always get best user-agent",
-    long_description="Always keep your user-agent updated with the most recent and most common user-agents",
+    long_description=read('README.md'),
     long_description_content_type="text/markdown",
     url="https://github.com/Lobstrio/shadow-useragent",
     packages=setuptools.find_packages(),
