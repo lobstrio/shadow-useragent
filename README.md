@@ -18,13 +18,14 @@ Features
 Installation
 ------------
 
-.. code-block:: shell
+```shell
 
     pip install shadow-useragent
+```
 
 Usage
 -----
-.. code-block:: python
+```python
 
     from shadow_useragent import ShadowUserAgent
     shadow_useragent = ShadowUserAgent()
@@ -50,5 +51,6 @@ Usage
 
     # and the best one, random via real world browser usage statistic
     ua.random
+```
 
 
