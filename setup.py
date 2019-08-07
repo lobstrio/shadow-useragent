@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="shadow-useragent-lobstr",
-    version="0.0.5",
+    name="shadow-useragent",
+    version="0.0.6",
     author="Simon Rochwerg",
     author_email="simon.rochwerg@lobstr.io",
     description="Always get best user-agent",
