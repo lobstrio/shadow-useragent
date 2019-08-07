@@ -21,6 +21,10 @@ Installation
 ```shell
 
     pip install shadow-useragent
+    
+    # for python3 / pip3
+    pip3 install shadow-useragent
+    
 ```
 
 Usage
