@@ -1,11 +1,18 @@
 import setuptools
+import os
+import io
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+def read(*parts):
+    filename = os.path.join(os.path.abspath(os.path.dirname(__file__)), *parts)
+    with io.open(filename, encoding='utf-8', mode='rt') as fp:
+        return fp.read()
+
 setuptools.setup(
     name="shadow-useragent",
-    version="0.0.7",
+    version="0.0.8",
     author="Simon Rochwerg",
     author_email="simon.rochwerg@lobstr.io",
     description="Always get best user-agent",
