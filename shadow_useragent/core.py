@@ -79,9 +79,12 @@ class ShadowUserAgent():
         return sorted(uas, key = lambda i: i['percent'],reverse=True)
 
 
-    def pickrandom(self):
+    def pickrandom(self, exclude_mobile=False):
         self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
+        limited_uas = [ua for ua in uas if ua["browser_family"] != "Other"]
+        if exclude_mobile:
+            limited_uas = [ua for ua in uas if ua["browser_family"] != "Android" and ua["browser_family"] != "Mobile Safari"]
         return random.choice(uas)["useragent"]
 
     def random_details(self):
@@ -92,11 +95,15 @@ class ShadowUserAgent():
     def get_useragent(self, browser_family):
         uas = self.get_sorted_uas()
         for ua in uas:
-            if ua["browser_family"] ==  browser_family:
+            if ua["browser_family"] == browser_family:
                 return ua["useragent"]
     @property
     def random(self):
         return self.pickrandom()
+
+    @property
+    def random_nomobile(self):
+        return self.pickrandom(exclude_mobile=True)
 
     @property
     def firefox(self):
@@ -128,4 +135,4 @@ class ShadowUserAgent():
 
     @property
     def ipad(self):
-        return self.get_useragent("iPad")
+        return self.get_useragent("Mobile Safari")
