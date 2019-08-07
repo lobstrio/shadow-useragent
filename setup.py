@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="shadow-useragent-lobstr",
-    version="0.0.2",
+    version="0.0.4",
     author="Simon Rochwerg",
     author_email="simon.rochwerg@lobstr.io",
     description="Always get best user-agent",
@@ -13,13 +13,12 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/Lobstrio/shadow-useragent",
     packages=setuptools.find_packages(),
+    include_package_data = True,
     install_requires=[
         'requests',
         'pytz',
         'coloredlogs'
     ],
-    include_package_data=True,
-
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
