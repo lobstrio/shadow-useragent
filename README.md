@@ -46,11 +46,18 @@ Usage
      # Mozilla/5.0 (iPad; CPU OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Mobile/15E148 Safari/604.1
      print(shadow_useragent.random)
      # Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0
+     
      print(shadow_useragent.random_nomobile)
      # Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36
 
     # and the best one, random via real world browser usage statistic
-    ua.random
+    print(ua.random)
+    # Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36
+
+    # if you want to excluse mobiles (some websites will display different pages)
+    print(shadow_useragent.random_nomobile)
+    # Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36
+
 ```
 
 
