@@ -14,15 +14,15 @@ class ShadowUserAgent():
     useragents = './data/useragents.pk'
     infos = './data/infos.pk'
 
-    def __init__(self):
+    def __init__(self, level="CRITICAL"):
         self.timezone = timezone('Europe/Paris')
-        self.logger = logging.getLogger('useragentcollector')
+        self.logger = logging.getLogger('shadow-useragent')
         formatter = '%(asctime)s:%(levelname)s:%(name)s:%(filename)s:%(lineno)d:%(funcName)s %(message)s'
         stream_handler = logging.StreamHandler()
-        stream_handler.setLevel(logging.DEBUG)
+        # stream_handler.setLevel(logging.CRITICAL)
         stream_handler.setFormatter(formatter)
         self.logger.addHandler(stream_handler)
-        coloredlogs.install(level='DEBUG', logger=self.logger, fmt=formatter)
+        coloredlogs.install(level=level, logger=self.logger, fmt=formatter)
 
     def _update(self):
         d_infos = {}
@@ -32,11 +32,13 @@ class ShadowUserAgent():
             try:
                 update_tries += 1
                 r = requests.get(url=self.URL)
-            except Exception as e:
+            except Exception:
                 self.logger.warning(traceback.format_exc())
+            else:
+                break
             finally:
                 if update_tries > 5:
-                    raise Exception(traceback.format_exc())
+                    raise Exception("API Unavailable")
         data = json.loads(r.content)
         with open(self.useragents, 'wb') as f:
             pickle.dump(data, f)
