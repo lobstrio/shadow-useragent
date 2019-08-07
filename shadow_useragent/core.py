@@ -6,13 +6,15 @@ import logging, coloredlogs
 import json
 import random
 import traceback
+import os
 
 
 class ShadowUserAgent():
 
     URL = "http://51.158.74.109/useragents/?format=json"
-    useragents = './data/useragents.pk'
-    infos = './data/infos.pk'
+    path = os.path.dirname(os.path.realpath(__file__))
+    useragents = '{}/data/useragents.pk'.format(path)
+    infos = '{}/data/infos.pk'.format(path)
 
     def __init__(self, level="CRITICAL"):
         self.timezone = timezone('Europe/Paris')
