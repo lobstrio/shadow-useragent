@@ -7,6 +7,7 @@ This package will always give you the most commonly used useragents in the web.
 This is a python3 wrapper of this free and unlimited API : <http://51.158.74.109/useragents/?format=json>
 This api displays usergants that we collect from user of our website (<https://en.lobstr.io>) and other websites from our partners
 This technique will let you  enjoy the most recent and most commonly used useragents in the world ! 
+**Feel free to reach out by email and make pull request if you need features.**
 
 
 Features
@@ -62,6 +63,40 @@ Usage
     print(shadow_useragent.random_nomobile)
     # Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36
 
+    # if you want a list a all useragents, sorted by most common useragent
+    uas = shadow_useragent.get_sorted_uas()
+    print(uas)
+    """
+       {
+      'id':1,
+      'scraping_time':'2019-07-31T17:05:15Z',
+      'percent':9.6,
+      'useragent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36',
+      'system':'Chrome 75.0 Win10',
+      'browser_family':'Chrome',
+      'browser_version_string':'75.0.3770',
+      'os_family':'Windows',
+      'os_version_string':'10',
+      'device_family':'Other',
+      'device_brand':None,
+      'device_model':None
+   }, ....
+   """
 ```
 
+Notes
+-----
+
+
+``shadow-useragent`` stores collected data in the folder of your installed pip packages ``site-packages/shadow_useragent/data``  
+
+The useragents list will be updated automatically with a call the the shadow-useragent api if datas are older than 24 hours. 
+If you want to force the update :
+
+```python
+    from shadow_useragent import ShadowUserAgent
+
+    shadow_useragent = ShadowUserAgent()
+    shadow_useragent.force_update()
+```
 
