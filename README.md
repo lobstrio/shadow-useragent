@@ -3,10 +3,10 @@ shadow-useragent
 
 Always keep your user-agent updated with the most recent and most common user-agents
 
-This package will always give you the most commonly used useragents in the web.
-This is a python3 wrapper of this free and unlimited API : <http://51.158.74.109/useragents/?format=json>
-This api displays usergants that we collect from user of our website (<https://en.lobstr.io>) and other websites from our partners
-This technique will let you  enjoy the most recent and most commonly used useragents in the world ! 
+This package will always give you the most commonly used useragents in the web.  
+This is a python3 wrapper of this free and unlimited API : <http://51.158.74.109/useragents/?format=json>  
+This api displays usergants that we collect from user of our website (<https://en.lobstr.io>) and other websites from our partners  
+This technique will let you  enjoy the most recent and most commonly used useragents in the world !  
 **Feel free to reach out by email and make pull request if you need features.**
 
 
