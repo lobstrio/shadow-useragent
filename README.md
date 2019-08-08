@@ -15,6 +15,7 @@ Features
 
 * grabs up to date and most commonly used ``useragent`` from <http://51.158.74.109/useragents/?format=json/>
 * randomize with real world users from <https://en.lobstr.io/> and many others
+* Ideal for useragent switching, anonymous surfing, scraping, data collection
 
 Installation
 ------------
