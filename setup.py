@@ -12,7 +12,7 @@ def read(*parts):
 
 setuptools.setup(
     name="shadow-useragent",
-    version="0.0.8",
+    version="0.0.9",
     author="Simon Rochwerg",
     author_email="simon.rochwerg@lobstr.io",
     description="Always get best user-agent",
