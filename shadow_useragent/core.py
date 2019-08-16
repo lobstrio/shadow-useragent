@@ -9,7 +9,7 @@ import traceback
 import os
 
 
-class ShadowUserAgent():
+class ShadowUserAgent(object):
 
     URL = "http://51.158.74.109/useragents/?format=json"
     path = os.path.dirname(os.path.realpath(__file__))
@@ -21,7 +21,6 @@ class ShadowUserAgent():
         self.logger = logging.getLogger('shadow-useragent')
         formatter = '%(asctime)s:%(levelname)s:%(name)s:%(filename)s:%(lineno)d:%(funcName)s %(message)s'
         stream_handler = logging.StreamHandler()
-        # stream_handler.setLevel(logging.CRITICAL)
         stream_handler.setFormatter(formatter)
         self.logger.addHandler(stream_handler)
         coloredlogs.install(level=level, logger=self.logger, fmt=formatter)
@@ -91,12 +90,26 @@ class ShadowUserAgent():
         self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
         return random.choice(uas)
-
-    def get_useragent(self, browser_family):
-        uas = self.get_sorted_uas()
+    
+    def get_useragent(self, browser_family=None, percent=None):
+        uas = self.get_uas()
+        random.shuffle(uas)
         for ua in uas:
-            if ua["browser_family"] == browser_family:
-                return ua["useragent"]
+            if browser_family:
+                if ua["browser_family"] ==  browser_family:
+                    return ua["useragent"]
+            if percent:
+                if ua["percent"] > percent:
+                    return ua["useragent"]
+
+    def get_most_common(self):
+        sorted_uas = self.get_sorted_uas()
+        return sorted_uas[0]["useragent"]
+
+    def percent(self, percent):
+        assert isinstance(percent, float)
+        return self.get_useragent(percent=percent)
+    
     @property
     def random(self):
         return self.pickrandom()
@@ -136,3 +149,7 @@ class ShadowUserAgent():
     @property
     def ipad(self):
         return self.get_useragent("Mobile Safari")
+    
+    @property
+    def most_common(self):
+        return self.get_most_common()
