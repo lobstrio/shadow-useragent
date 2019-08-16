@@ -37,10 +37,8 @@ Installation
 To install Shadow UserAgent, simply use pipenv (or pip, of course):
 
 ```shell
-
 $ pip install shadow-useragent
-👻
-    
+👻  
 ```
 
 Never disappointed.
