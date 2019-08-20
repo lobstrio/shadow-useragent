@@ -13,7 +13,7 @@ Behold, the power of UserAgent:
 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
 ```
 
-The percent of use is updated on a day-to-day basis, based on the UserAgent of the users of this package. Use is thus dynamically updated, and never outdated. No more unused header that reveals your true identity, you are protected by the group.
+When you use our library, we register your User Agent, and update the frequency of use. The percent of use is thus dynamically updated, and never outdated. No more unused header that reveals your true identity, you are protected by the group.
 
 Besides, you can rely on traditional features, like picking an header from outstanding IE browser family.
 
