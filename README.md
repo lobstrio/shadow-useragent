@@ -73,8 +73,8 @@ ua = ua.random
 ua = ua.random_nomobile # Mobile-UA excluded
 
 # If you want an Exhaustive list, you can play with
-uas = shadow_useragent.get_uas()
-uas = shadow_useragent.get_sorted_uas()  # Sorted List per Percentage of Use
+uas = ua.get_uas()
+uas = ua.get_sorted_uas()  # Sorted List per Percentage of Use
 
 >>> uas[0]
 {
