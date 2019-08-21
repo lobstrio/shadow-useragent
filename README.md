@@ -91,5 +91,18 @@ uas = shadow_useragent.get_sorted_uas()  # Sorted List per Percentage of Use
   'device_brand':None,
   'device_model':None
 }
+```
 
+Notes
+-----
 
+shadow-useragent stores collected data in the folder of your installed pip packages site-packages/shadow_useragent/data
+
+The useragents list will be updated automatically with a call the the shadow-useragent api if datas are older than 24 hours. If you want to force the update :
+
+```python
+
+from shadow_useragent import ShadowUserAgent
+    shadow_useragent = ShadowUserAgent()
+    shadow_useragent.force_update()
+ ```
