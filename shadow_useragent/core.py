@@ -40,7 +40,7 @@ class ShadowUserAgent(object):
             finally:
                 if update_tries > 5:
                     raise Exception("API Unavailable")
-        data = json.loads(r.content)
+        data = json.loads(r.contentr.decode('utf-8'))
         with open(self.useragents, 'wb') as f:
             pickle.dump(data, f)
         d_infos["last_update"] = datetime.now(self.timezone)
@@ -90,7 +90,7 @@ class ShadowUserAgent(object):
         self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
         return random.choice(uas)
-    
+
     def get_useragent(self, browser_family=None, percent=None):
         uas = self.get_uas()
         random.shuffle(uas)
@@ -109,7 +109,7 @@ class ShadowUserAgent(object):
     def percent(self, percent):
         assert isinstance(percent, float)
         return self.get_useragent(percent=percent)
-    
+
     @property
     def random(self):
         return self.pickrandom()
@@ -149,7 +149,7 @@ class ShadowUserAgent(object):
     @property
     def ipad(self):
         return self.get_useragent("Mobile Safari")
-    
+
     @property
     def most_common(self):
         return self.get_most_common()
