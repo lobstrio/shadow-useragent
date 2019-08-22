@@ -1,7 +1,7 @@
 shadow-useragent
 ==============
 
-Shadow UserAgent gives you access to the most commonly used UserAgents on the Internet, safe from outdated data.
+`shadow-useragent` gives you access to the most commonly used UserAgents on the Internet, safe from outdated data.
 
 Behold, the power of UserAgent: 
 ```python3
@@ -21,7 +21,7 @@ Besides, you can rely on traditional features, like picking an header from outst
 Feature Support
 ------------
 
-Shadow UserAgent is the only safe, and updated user-agent package.
+`shadow-useragent` is the only safe, and updated user-agent package.
 
 * UserAgent Percentage of Use
 * Day-to-day Update
@@ -29,12 +29,12 @@ Shadow UserAgent is the only safe, and updated user-agent package.
 * Elegant @property Methods
 * Community-Based Package
 
-Shadow UserAgent supports Python 2.7 & 3.4–3.7, and runs great on PyPy.
+`shadow-useragent` supports Python 2.7 & 3.4–3.7, and runs great on PyPy.
 
 Installation
 ------------
 
-To install Shadow UserAgent, simply use pipenv (or pip, of course):
+To install `shadow-useragent`, simply use pipenv (or pip, of course):
 
 ```shell
 $ pip install shadow-useragent
@@ -96,13 +96,13 @@ uas = ua.get_sorted_uas()  # Sorted List per Percentage of Use
 Notes
 -----
 
-shadow-useragent stores collected data in the folder of your installed pip packages site-packages/shadow_useragent/data
+`shadow-useragent` stores collected UAs in the folder of your pip packages: site-packages/shadow_useragent/data.
 
-The useragents list will be updated automatically with a call the the shadow-useragent api if datas are older than 24 hours. If you want to force the update :
+The UserAgents' list is automatically updated with a shadow call (mm) to the shadow-useragent API every 24 hours. 
+If you want to force the update :
 
-```python
-
+```python3
 from shadow_useragent import ShadowUserAgent
-    shadow_useragent = ShadowUserAgent()
-    shadow_useragent.force_update()
- ```
+shadow_useragent = ShadowUserAgent()
+shadow_useragent.force_update()
+```
