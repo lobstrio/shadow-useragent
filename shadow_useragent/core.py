@@ -40,7 +40,7 @@ class ShadowUserAgent(object):
             finally:
                 if update_tries > 5:
                     raise Exception("API Unavailable")
-        data = json.loads(r.contentr.decode('utf-8'))
+        data = json.loads(r.content.decode('utf-8'))
         with open(self.useragents, 'wb') as f:
             pickle.dump(data, f)
         d_infos["last_update"] = datetime.now(self.timezone)
