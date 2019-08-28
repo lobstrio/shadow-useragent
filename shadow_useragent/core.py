@@ -33,9 +33,10 @@ class ShadowUserAgent(object):
             try:
                 update_tries += 1
                 r = requests.get(url=self.URL)
-            except Exception:
-                self.logger.warning(traceback.format_exc())
                 data = json.loads(r.content.decode('utf-8'))
+            except Exception:
+                self.logger.error(r.content.decode('utf-8')
+                self.logger.warning(traceback.format_exc())
             else:
                 break
             finally:
