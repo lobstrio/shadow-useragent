@@ -35,7 +35,7 @@ class ShadowUserAgent(object):
                 r = requests.get(url=self.URL)
                 data = json.loads(r.content.decode('utf-8'))
             except Exception:
-                self.logger.error(r.content.decode('utf-8')
+                self.logger.error(r.content.decode('utf-8'))
                 self.logger.warning(traceback.format_exc())
             else:
                 break
