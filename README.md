@@ -95,7 +95,7 @@ uas = ua.get_sorted_uas()  # Sorted List per Percentage of Use
 
 Notes
 -----
-
+Contact for any issues or request : **simon.rochwerg@lobstr.io**
 `shadow-useragent` stores collected UAs in the folder of your pip packages: site-packages/shadow_useragent/data.
 
 The UserAgents' list is automatically updated with a shadow call (mm) to the shadow-useragent API every 24 hours. 
