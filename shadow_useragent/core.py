@@ -85,7 +85,7 @@ class ShadowUserAgent(object):
         limited_uas = [ua for ua in uas if ua["browser_family"] != "Other"]
         if exclude_mobile:
             limited_uas = [ua for ua in uas if ua["browser_family"] != "Android" and ua["browser_family"] != "Mobile Safari"]
-        return random.choice(uas)["useragent"]
+        return random.choice(limited_uas)["useragent"]
 
     def random_details(self):
         self.update()
