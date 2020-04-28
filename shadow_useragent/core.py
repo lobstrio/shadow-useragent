@@ -12,9 +12,16 @@ import os
 class ShadowUserAgent(object):
 
     URL = "http://51.158.74.109/useragents/?format=json"
-    path = os.path.dirname(os.path.realpath(__file__))
-    useragents = '{}/data/useragents.pk'.format(path)
-    infos = '{}/data/infos.pk'.format(path)
+    path = os.path.join(
+        (
+            os.environ.get('LOCALAPPDATA') or
+            os.environ.get('XDG_CACHE_HOME') or
+            os.path.join(os.environ['HOME'], '.cache')
+        ),
+        __name__
+    )
+    useragents = os.path.join(path, 'useragents.pk')
+    infos = os.path.join(path, 'infos.pk')
 
     def __init__(self, level="CRITICAL"):
         self.timezone = timezone('Europe/Paris')
@@ -26,6 +33,7 @@ class ShadowUserAgent(object):
         coloredlogs.install(level=level, logger=self.logger, fmt=formatter)
 
     def _update(self):
+        os.makedirs(self.path, exist_ok=True)
         d_infos = {}
 
         update_tries = 0
@@ -51,7 +59,13 @@ class ShadowUserAgent(object):
 
     def update(self):
         limit = datetime.now(self.timezone) - timedelta(hours=24)
-        d_infos = pickle.load(open(self.infos, 'rb'))
+        try:
+            d_infos = pickle.load(open(self.infos, 'rb'))
+        except FileNotFoundError:
+            d_infos = {
+                "last_update":
+                    datetime.fromtimestamp(0, self.timezone)
+            }
         self.logger.error(d_infos)
         last_update = d_infos["last_update"]
         if last_update < limit:
