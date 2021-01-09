@@ -2,7 +2,8 @@ import requests
 import pickle
 from pytz import timezone
 from datetime import datetime, timedelta
-import logging, coloredlogs
+import logging
+import coloredlogs
 import json
 import random
 import traceback
@@ -37,25 +38,28 @@ class ShadowUserAgent(object):
         d_infos = {}
 
         update_tries = 0
-        while 1:
+        r = None
+        while True:
             try:
                 update_tries += 1
                 r = requests.get(url=self.URL)
                 data = json.loads(r.content.decode('utf-8'))
-            except Exception:
-                self.logger.error(r.content.decode('utf-8'))
-                self.logger.warning(traceback.format_exc())
+                with open(self.useragents, 'wb') as f:
+                    pickle.dump(data, f)
+                d_infos["last_update"] = datetime.now(self.timezone)
+
+                with open(self.infos, 'wb') as f:
+                    pickle.dump(d_infos, f)
+            except Exception as e:
+                err_msg = "Error occured, Error type:{} Traceback:{} ".format(e, traceback.format_exc())
+                if r:
+                    err_msg += ",Service returned: {}".format(r.content.decode('utf-8'))
+                self.logger.error(err_msg)
             else:
                 break
             finally:
                 if update_tries > 5:
                     raise Exception("API Unavailable")
-        with open(self.useragents, 'wb') as f:
-            pickle.dump(data, f)
-        d_infos["last_update"] = datetime.now(self.timezone)
-
-        with open(self.infos, 'wb') as f:
-            pickle.dump(d_infos, f)
 
     def update(self):
         limit = datetime.now(self.timezone) - timedelta(hours=24)
@@ -90,15 +94,15 @@ class ShadowUserAgent(object):
     def get_sorted_uas(self):
         self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
-        return sorted(uas, key = lambda i: i['percent'],reverse=True)
-
+        return sorted(uas, key=lambda i: i['percent'], reverse=True)
 
     def pickrandom(self, exclude_mobile=False):
         self.update()
         uas = pickle.load(open(self.useragents, 'rb'))
         limited_uas = [ua for ua in uas if ua["browser_family"] != "Other"]
         if exclude_mobile:
-            limited_uas = [ua for ua in uas if ua["browser_family"] != "Android" and ua["browser_family"] != "Mobile Safari"]
+            limited_uas = [ua for ua in uas if ua["browser_family"] !=
+                           "Android" and ua["browser_family"] != "Mobile Safari"]
         return random.choice(limited_uas)["useragent"]
 
     def random_details(self):
@@ -111,7 +115,7 @@ class ShadowUserAgent(object):
         random.shuffle(uas)
         for ua in uas:
             if browser_family:
-                if ua["browser_family"] ==  browser_family:
+                if ua["browser_family"] == browser_family:
                     return ua["useragent"]
             if percent:
                 if ua["percent"] > percent:
